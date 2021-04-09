@@ -1,0 +1,13 @@
+<view class="top">
+  <view class="itemRecord">
+    <view>时间</view>
+    <view>类型</view>
+    <view>时长</view>
+  </view>
+  <view class="itemRecord" wx:for="{{items}}" wx:key="i">
+    <view>{{item.accomplishTime}}</view>
+    <view>{{item.name}}</view>
+    <view>{{item.accomplishMinute}}分钟</view>
+  </view>
+</view>
+<view class="bottom">已无更多</view>

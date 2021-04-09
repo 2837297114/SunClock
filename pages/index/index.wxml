@@ -1,0 +1,55 @@
+<view hidden="{{timeCode}}">
+  <view class="top">
+    <view>选择一个任务</view>
+    <view>在接下来的<picker bindchange="timing" class="timing" range="{{timingMinutes}}">{{timingMinute}}分钟</picker>，专注做这件事</view>
+  </view>
+
+  <view class="box">
+
+    <view wx:for="{{typeItems}}" wx:key="i">
+
+      <view wx:if="{{selectItemIndex == item.index}}">
+        <view class="boxson" style="border-bottom:3rpx solid {{item.borderBottom}};" bindtap="typeClick" data-index="{{item.index}}">
+          <view style="transform:translateY(-5rpx);"><image src="{{item.image}}"></image></view>
+          <view style="transform:translateY(-5rpx);color:#353535;">{{item.name}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{selectItemIndex != item.index}}">
+        <view class="boxson" bindtap="typeClick" data-index="{{item.index}}">
+          <view><image src="{{item.image}}"></image></view>
+          <view>{{item.name}}</view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <view class="start" bindtap="startTime">
+    <view>开始计时</view>
+  </view>
+</view>
+
+<view hidden="{{!timeCode}}" style="height:{{clockHeigth}}rpx;" class="clock">
+  <view class="sy" hidden="{{complete}}">
+    <image src="{{sound ? soundImage[0] : soundImage[1]}}" bindtap="soundTap"></image>
+  </view>
+  <view class="progress">
+    <canvas canvas-id="progress_bg1" class="progress_bg1" hidden="{{!pauseBtn}}"></canvas>
+    <canvas canvas-id="progress_bg2" class="progress_bg2" hidden="{{!pauseBtn}}"></canvas>
+    <canvas canvas-id="progress_bg3" class="progress_bg3"></canvas>
+    <canvas canvas-id="progress_active" class="progress_active"></canvas>
+    <view class="progress_text1" hidden="{{complete}}">{{strTime}}</view>
+    <view class="progress_text2" hidden="{{complete}}">{{pauseBtn ? '计时中' : '已暂停'}}</view>
+    <view class="wc" hidden="{{!complete}}">
+      <image src="/images/wc.png"></image>
+    </view>
+  </view>
+  <view class="clockBtn">
+    <view bindtap="pauseTime" hidden="{{!pauseBtn}}">暂停</view>
+    <view bindtap="continueTime" hidden="{{!continue}}">继续</view>
+    <view bindtap="waive" hidden="{{!waive}}">放弃</view>
+    <view bindtap="accomplish" hidden="{{!complete}}">完成</view>
+  </view>
+</view>
