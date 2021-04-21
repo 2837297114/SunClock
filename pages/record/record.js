@@ -9,7 +9,6 @@ Page({
   },
 
   onShow : function(){
-    console.log(1);
     let _this = this;
     let logs = wx.getStorageSync('logs') || [];
     if(logs.length > 0){

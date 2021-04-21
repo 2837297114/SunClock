@@ -280,6 +280,7 @@ Page({
     ctx2.draw();
   },
 
+  //动态画圆
   DrawCircle : function(){
     let _this = this;
 
@@ -314,16 +315,27 @@ Page({
         }
         //rpx转为px单位
         let lineWidth2 = 4 / _this.data.rate;
+        //指定画布
         let ctx2 = wx.createCanvasContext('progress_active');
+        //设置线条宽度
         ctx2.setLineWidth(lineWidth2);
+        //设置线条颜色
         ctx2.setStrokeStyle("rgba(255,255,255,1)");
+        //设置线条端点样式
         ctx2.setLineCap('round');
+        //开始一条路径或重置当前的路径
         ctx2.beginPath();
+        //圆的中心的 x 坐标
         let x2 = 360 / _this.data.rate / 2;
+        //圆的中心的 y 坐标。
         let y2 = 360 / _this.data.rate / 2;
+        //圆的半径。
         let r2 = 360 / _this.data.rate / 2 - 2 * lineWidth2;
+        //创建弧/曲线
         ctx2.arc(x2,y2,r2,1.5 * Math.PI,angle * Math.PI,false);
+        //边框
         ctx2.stroke();
+        //应用
         ctx2.draw();
       }else{
         //计时完成清除计时器
@@ -377,6 +389,7 @@ Page({
     };
     return fmt;
   },
+  
   //后台进入前台 继续播放音乐 继续计时
   onShow : function(){
     if(this.data.pauseBtn){
@@ -384,6 +397,7 @@ Page({
       this.DrawCircle();
     }
   },
+
   //前台进入后台 暂停音乐 暂停计时 防止用户后台挂机
   onHide : function(){
     if(this.data.pauseBtn){
